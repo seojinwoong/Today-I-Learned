@@ -1,25 +1,33 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-function App() {
-  const [time, setTime] = useState(1);
+const heavyWork = () => {
+  console.log('엄청 무거운 작업');
+  return ['홍길동', '홍길순', '고길동'];
+}
 
-  const handleClick = () => {
-    let newTime;
-    if (time >= 12) {
-      newTime = 1;
-    } else {
-      newTime = time + 1;
-    }
-    setTime(newTime);
+const App = () => {
+  const [names, setNames] = useState(() => heavyWork());
+  const [input, setInput] = useState('');
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
   }
 
+  const handleUpload = () => {
+    setNames(prev => [input, ...prev]);
+  }
 
   return (
     <div>
-      <span>현재 시각 : {time}시</span>
-      <button onClick={handleClick}>Update</button>
+      <input type="text" value={input} onChange={handleInput}/>      
+      <button onClick={handleUpload}>Upload</button>
+      {
+        names.map((name, idx) => {
+          return <p key={idx}>{name}</p>
+        })
+      }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

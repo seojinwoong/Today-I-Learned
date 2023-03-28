@@ -48,6 +48,18 @@ function App() {
 ### useEffect 안에 return () => {} 식으로 함수를 리턴하면 해당 컴포넌트가 사라질때 (언마운트될때), 혹은 다음 useEffect가 실행되기 이전에 특정 코드를 실행시킬 수 있다. 보통 setInterval, setTimeout 함수를 삭제 하거나 이벤트리스너를 삭제할때 주로 사용한다.
 ![5.png](./study/5.png)
 
+# useRef
+## useRef는 보통 두가지 경우로 많이 활용한다.
+ 1) 리랜더링이 되지 않는 변수를 담을 때
+ 2) 특정 DOM 객체를 다룰때 (js에서 document.querySelector와 비슷함)
+
+### 함수형 컴포넌트에서 useRef를 사용하면 객체를 리턴하는데 그 내용은 아래 그림을 참고하면 된다.
+![6.png](./study/6.png)
+### useRef로 작성한 ref object는 언제든 수정이 가능하기 때문에 언제든 바꿀 수 있다.
+### useRef로 작성한 ref object는  컴포넌트 생애 주기동안 계속해서 값을 유지한다. (마운트부터 ~ 언마운트되어 사라질때까지)
+
+![7.png](./study/7.png)
+
 
 
 

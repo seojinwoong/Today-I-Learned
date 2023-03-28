@@ -1,19 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
 
 const App = () => {
-  const [count, setCount] = useState(1);
-  const renderCountRef = useRef(0);
+  const inputRef = useRef();
 
   useEffect(() => {
-    // 화면이 렌더링되는 횟수를 구할떄 useRef를 활용하면 된다.
-    renderCountRef.current = renderCountRef.current + 1; 
-    console.log('렌더링 수 : ', renderCountRef.current);
-  });
+    // console.log(inputRef);
+    inputRef.current.focus();
+  }, []);
+
+  const login = () => {
+    alert(`환영합니다 ${inputRef.current.value}!`);
+    inputRef.current.focus();
+  }
 
   return (
     <div>
-        <p>Count: {count}</p>
-        <button onClick={() => setCount(count + 1)}>올려</button>
+        <input ref={inputRef} type="text" placeholder='username'/>
+        <button onClick={login}>로그인</button>
     </div>
   )
 }

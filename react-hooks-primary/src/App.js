@@ -1,34 +1,19 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 const App = () => {
-  const [renderer, setRenderer] = useState(0);  
-  const countRef = useRef(0);
-  let countVar = 0;
+  const [count, setCount] = useState(1);
+  const renderCountRef = useRef(0);
 
-  const doRendering = () => {
-    setRenderer(renderer + 1);
-  }
-
-  const increaseRef = () => {
-    countRef.current = countRef.current + 1;
-    console.log('ref:', countRef.current);
-  }
-  const increaseVar = () => {
-    countVar = countVar + 1;
-    console.log('var:', countVar);
-  }
-  const printResults = () => {
-    console.log(`ref: ${countRef.current}, var: ${countVar}`);
-  }
+  useEffect(() => {
+    // 화면이 렌더링되는 횟수를 구할떄 useRef를 활용하면 된다.
+    renderCountRef.current = renderCountRef.current + 1; 
+    console.log('렌더링 수 : ', renderCountRef.current);
+  });
 
   return (
     <div>
-        <p>Ref: { countRef.current }</p>
-        <p>Var: {countVar}</p>
-        <button onClick={doRendering}>렌더!</button>
-        <button onClick={increaseRef}>Ref올려</button>
-        <button onClick={increaseVar}>Var올려</button>
-        <button onClick={printResults}>ref var 값 출력</button>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>올려</button>
     </div>
   )
 }

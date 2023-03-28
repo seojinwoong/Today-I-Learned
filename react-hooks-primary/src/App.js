@@ -1,26 +1,34 @@
 import React, { useState, useRef } from 'react'
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [renderer, setRenderer] = useState(0);  
   const countRef = useRef(0);
+  let countVar = 0;
 
-  console.log('렌더링');
-
-  const increaseCountSate = () => {
-    setCount(count + 1);
+  const doRendering = () => {
+    setRenderer(renderer + 1);
   }
-  const increaseCountRef = () => {
+
+  const increaseRef = () => {
     countRef.current = countRef.current + 1;
-    console.log('Ref: ', countRef.current);
+    console.log('ref:', countRef.current);
+  }
+  const increaseVar = () => {
+    countVar = countVar + 1;
+    console.log('var:', countVar);
+  }
+  const printResults = () => {
+    console.log(`ref: ${countRef.current}, var: ${countVar}`);
   }
 
   return (
     <div>
-        <p>state: {count}</p>
-        <p>ref: {countRef.current}</p>
-        <button onClick={increaseCountSate}>State 올려</button>
-        <button onClick={increaseCountRef}>ref 올려</button>
-        
+        <p>Ref: { countRef.current }</p>
+        <p>Var: {countVar}</p>
+        <button onClick={doRendering}>렌더!</button>
+        <button onClick={increaseRef}>Ref올려</button>
+        <button onClick={increaseVar}>Var올려</button>
+        <button onClick={printResults}>ref var 값 출력</button>
     </div>
   )
 }

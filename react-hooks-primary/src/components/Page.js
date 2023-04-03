@@ -3,12 +3,12 @@ import Content from './Content.js';
 import Footer from './Footer.js';
 import Header from './Header.js';
 
-const Page = ( {isDark, setIsDark} ) => {
+const Page = () => {
   return (
     <div className='page'>
-        <Header isDark={isDark}/>
-        <Content isDark={isDark}/>
-        <Footer isDark={isDark} setIsDark={setIsDark}/>
+      <Header></Header>
+      <Content></Content>
+      <Footer></Footer>
     </div>
   )
 }

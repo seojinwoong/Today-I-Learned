@@ -63,8 +63,37 @@ function App() {
 ## c.f) setState로 값을 변경할 때 이전값과 동일하다면 리랜더링이 일어나지 않는다! (원시형, 참조형 모두 해당)
 
 
+# useContext
 
+![8.png](./study/8.png)
 
+### 위의 그림과 같이 react 개발을 하다보면, 전역적으로 변수를 여러 컴포넌트들에서 사용해야 하는데 react의 프로그래밍상 데이터는 위에서 아래로 prop으로 넘겨주어야 하는데, 프로젝트가 커질수록 이 과정이 복잡해져서 개발자는 고통스러운 코딩경험을 할 것이다.
+### 이에 대한 해결책으로 context의 기능이 있다.
 
+## c.f) 컴포넌트에서 하나씩 prop을 전달하는 것을 'Prop Drilling' 이라고 한다.
 
+![9.png](./study/9.png)
 
+## c.f) 주의사항!
+![10.png](./study/10.png)
+
+## useContext 사용법
+ 1) 'createContext'로 context를 만든다. (예시 ThemeContext)
+ 2) 루트 부분을 1)에서 만든 context로 감싼다
+    Context명.Provider로 태그를 명명해주고, value 속성에 전달할 값을 적는다.
+ ```js
+    import { ThemeContext } from './context/ThemeContext';
+    ...
+    return (
+        <ThemeContext.Provider value={{ isDark, setIsDark }}>
+
+        </ThemeContext.Provider>
+    )
+ ```
+3) context를 받아올 때, useContext hooks를 사용한다.
+   ```js
+    const data = useContext(ThemeContext);
+   ```
+
+c.f) createContext로 context를 만들때 createContext의 파라미터로 들어가는 값은 무엇을 의미할까?
+     그 값은 '만약 루트 부분에 Provider로 감싸주지 않았다면', 파라미터로 작성한 값이 전달된다.

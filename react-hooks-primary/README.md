@@ -139,4 +139,25 @@ useCallback역시 useMemo와 같은 구조로 기억하면 편하다.
  - 첫번째 인자 : 함수 그 자체를 넣는다. 이 함수가 메모이제이션된다.  
  - 두번째 인자 : 의존성 배열. 배열 안에 있는 값들이 변할때 첫번째 인자인 콜백함수를 다시 재할당하고 그것을 메모이제이션한다.
 
+# useReducer
+useReducer는 useState처럼 데이터를 관리하는데 쓰는 react hooks이다. 
+그렇다면 어떠한 경우에 useReducer를 쓰는가?
+### 여러개의 복잡한 값들을 관리할 때 useState 대신 useReducer를 쓰면 좀 더 쉽게 개발할 수 있다.
+![15.png](./study/15.png)
 
+## useReducer를 은행의 예시로 들어설명한 그림
+![17.png](./study/17.png)
+![18.png](./study/18.png)
+
+## useReducer 코드 구조 설명
+![19.png](./study/19.png)  
+  - useReducer는 두개의 인자를 받는데 첫번째 인자로 4. reducer를 넣고 두번째 인자로 5. state의 초깃값을 넣는다.
+  - 그렇게 useReducer로 만들면 배열이 반환되는데 배열의 첫번째 값 2. 는 state이고, 두번째 3. dispatch는 reducer에게 state를 변경요청하는 역할을 한다. (dispatch는 함수이다.)
+  - reducer의 정의는 1번처럼 만든다. 첫번째 인자로 현재의 state값(money)이고, 두번째 인자로 action은 dispatch로 보내는 action 이다.
+  - dispatch를 호출하면 reducer가 호출된다.
+
+![20.png](./study/20.png)  
+- dipatch의 인자로 action을 넣는데, action은 object 형태로 넣는다. action의 내부에는 'type'과 'payload'를 넣는다.
+
+c.f) - useReducer로 state를 변경하면 useState처럼 컴포넌트가 리랜더링된다.  
+     - useReducer의 장점은 action의 type을 지정한대로만 동작한다는 것이다. 정의하지 않은 action type으로 어떠한 행동을 하더라도 아무런 변화가 일어나지 않는다.

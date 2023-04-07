@@ -1,31 +1,64 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useReducer, useState } from 'react';
+import Student from './Student';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'add-student':
+      const name = action.payload.name;
+      const newStudent = {
+        id: Date.now(),
+        name,
+        isHere: true
+      }
+      return {
+        count: state.count + 1,
+        students: [...state.students, newStudent],
+      }
+    case 'delete-student': 
+      return {
+        count: state.count - 1,
+        students: state.students.filter(student => student.id !== action.payload.id)
+      }
+    case 'mark-student': 
+      return {
+        count: state.count,
+        students: state.students.map(student => {
+          if (student.id === action.payload.id) {
+            return {...student, isHere: !student.isHere}
+          }
+          return student;
+        })
+      }
+    default:
+      return state
+  }
+};
+
+const initialState = {
+  count: 0,
+  students: []
+}
 
 const App = () => {
-  const [number, setNumber] = useState(0);
-  const [isKorea, setIsKorea] = useState(true);
-
-  const location = useMemo(() => {
-    return {
-      country: isKorea ? '한국' : '외국'
-    }
-  }, [isKorea]);
-  
-  // {
-  //   country: isKorea ? '한국' : '외국'
-  // }
-
-  useEffect(() => {
-    console.log('useEffect 호출');
-  }, [location]);
+  const [name, setName] = useState('');
+  const [studentInfo, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div>
-      <h2>하루에 몇끼 먹어요?</h2>
-      <input type="number" value={number} onChange={(e) => setNumber(e.target.value)}/>
-      <hr />
-      <h2>어느 나라에 있어요?</h2>
-      <p>나라 : {location.country}</p>      
-      <button onClick={() => setIsKorea(!isKorea)}>비행기 타자</button>
+      <h1>출석부</h1>
+      <p>총 학생 수 : {studentInfo.count}</p>
+      <input 
+        type="text" 
+        placeholder='이름을 입력해주세요'
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button onClick={() => {
+        dispatch({type: 'add-student', payload: {name}})
+      }}>추가</button>
+      {studentInfo.students.map(student => {
+        return (<Student key={student.id} name={student.name} dispatch={dispatch} id={student.id} isHere={student.isHere}/>)
+      })}
     </div>
   )
 }

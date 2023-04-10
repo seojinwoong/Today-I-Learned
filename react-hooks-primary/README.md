@@ -161,3 +161,9 @@ useReducer는 useState처럼 데이터를 관리하는데 쓰는 react hooks이�
 
 c.f) - useReducer로 state를 변경하면 useState처럼 컴포넌트가 리랜더링된다.  
      - useReducer의 장점은 action의 type을 지정한대로만 동작한다는 것이다. 정의하지 않은 action type으로 어떠한 행동을 하더라도 아무런 변화가 일어나지 않는다.
+
+# 커스텀 훅 (custom Hooks)
+useState, useEffect 처럼 리액트 환경에서 다양한 훅을 이용하여 편리하게 개발을 할 수 있는데, 반복되는 코드를 줄일 수 있는 custom hooks, 말 그대로 커스텀을 하여 기능을 만들 수 있다. 그것이 바로 커스텀 훅이다.
+![21.png](./study/21.png)  
+
+c.f) 커스텀 훅은 기존의 훅처럼 'use~~~'의 형식으로 만든다. react가 만약 우리가 만든 커스텀 훅이 오류가 있다면 console창에 해당 커스텀훅을 표시해주기 때문이다.

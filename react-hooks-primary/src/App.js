@@ -1,18 +1,27 @@
-import { useFetch } from './useFetch';
-
-const baseUrl = `https://jsonplaceholder.typicode.com`;
+import { useState } from 'react';
+import Child from './Child';
 
 const App = () => {
+  const [parentAge, setParentAge] = useState(0);
+  const [childAge, setChildAge] = useState(0);
 
-  const {data: userData } = useFetch(baseUrl, 'users');
-  const {data: postData } = useFetch(baseUrl, 'posts');
+  const incrementParentAge = () => {
+    setParentAge(parentAge + 1);
+  }
+
+  const incrementChildAge = () => {
+    setChildAge(childAge + 1);
+  }
+
+  console.log('부모 컴포넌트가 랜더링 되었어요');
 
   return (
-    <div>
-      <h1>User</h1>
-      {userData && <pre>{JSON.stringify(userData[0], null, 2)}</pre>}
-      <h1>Post</h1>
-      {postData && <pre>{JSON.stringify(postData[0], null, 2)}</pre>}
+    <div style={{ border: '2px solid navy', padding: '10px' }}>
+        <h1>부모</h1>
+        <p>age : {parentAge}</p>
+        <button onClick={incrementParentAge}>부모 나이 증가</button>
+        <button onClick={incrementChildAge}>자녀 나이 증가</button>
+        <Child name={'홍길동'} age={childAge}/>
     </div>
   )
 }

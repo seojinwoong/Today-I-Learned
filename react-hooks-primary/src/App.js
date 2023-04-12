@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div>
-      <MyInput inputRef={inputRef}/>
+      <MyInput ref={inputRef}/>
       <button onClick={focus}>집중</button>
     </div>
   )

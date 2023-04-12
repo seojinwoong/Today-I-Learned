@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 
-const MyInput = ({inputRef}) => {
+const MyInput = (props, ref) => {
   return (
-    <input type="text" ref={inputRef}/>
+    <input type="text" ref={ref}/>
   )
 };
 
-export default MyInput;
+export default forwardRef(MyInput);

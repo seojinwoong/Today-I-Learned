@@ -196,3 +196,5 @@ c.f) 주의할 점
 - React.memo는 Props의 변화만 감지하는 최적화 방법이다. React.memo를 사용하여 컴포넌트를 최적화 하더라도,
   useState, useReducer, useContext등 state를 관리하는 hook을 통하여 data를 변경한다면 리랜더링이 일어난다.
 
+# Virtual DOM (가상돔)에 대하여
+![27.png](./study/27.png)  

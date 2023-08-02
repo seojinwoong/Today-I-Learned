@@ -21,8 +21,11 @@
 
 ## 코딩테스트 공부방법(개발남 노씨)
 <난이도 별>
+
 기본: 재귀(Recursion), Queue, stack, linked list, hash map, String, graph
+
 중급: DFS, BFS, DP, 완전탐색
+
 심화: Priority Queue, Binary search
 
 <공부 순서>
